@@ -51,6 +51,7 @@ namespace BelgianAI
         private void HandleDeath()
         {
             Debug.Log("Player died!");
+            gameObject.SetActive(false);
         }
     }
 }
