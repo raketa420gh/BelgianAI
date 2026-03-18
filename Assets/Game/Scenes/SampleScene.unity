@@ -213,7 +213,8 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1511174558}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -517,6 +518,57 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451326192}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1511174557
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1511174558}
+  - component: {fileID: 1511174559}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1511174558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511174557}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 609513035}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1511174559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511174557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1cdeeb135c4bbb936d7d9b301fee6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.EnemySpawner
+  _stageManager: {fileID: 1681583711}
+  _playerTransform: {fileID: 1681583708}
+  _soldierPrefab: {fileID: 2308175154256892336, guid: 4de1264fa32ae50479544113c690abfe, type: 3}
+  _trollPrefab: {fileID: 1756778317549522095, guid: 0e53fbe544482da49b91428dc028bdc0, type: 3}
+  _soldierCount: 4
+  _trollCount: 1
+  _spawnRadius: 12
 --- !u!1 &1681583707
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,11 +644,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 716b084e133941639230e604e0536ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.StageManager
-  _playerTransform: {fileID: 1915753200}
-  _gridCapacityMax: 10
+  _playerTransform: {fileID: 1681583708}
+  _gridCapacityMax: 12
   _attackCapacityMax: 10
-  _outerRadius: 3.5
-  _innerRadius: 2
+  _outerRadius: 5
+  _innerRadius: 2.5
   _waitRadius: 8
   _slotCount: 8
   _drawGizmos: 1

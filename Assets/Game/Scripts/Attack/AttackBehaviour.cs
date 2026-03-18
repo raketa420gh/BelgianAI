@@ -30,11 +30,8 @@ namespace BelgianAI
         [Header("Visual")]
         [SerializeField]
         private Renderer _renderer;
-
-        [Header("Dependencies")]
-        [SerializeField]
+        
         private StageManager _stageManager;
-
         private GridSlot _currentSlot;
         private Attack _currentAttack;
         private bool _hasSlot;
