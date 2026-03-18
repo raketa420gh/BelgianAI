@@ -10,9 +10,7 @@ namespace BelgianAI
         
         public int CurrentHealth => _currentHealth;
         
-        [SerializeField]
         private int _maxHealth = 100;
-        
         private int _currentHealth;
 
         public void Initialize(int maxHealth)

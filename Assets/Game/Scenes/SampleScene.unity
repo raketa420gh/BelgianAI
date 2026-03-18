@@ -566,6 +566,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.Player
   _healthComponent: {fileID: 1681583710}
   _stageManager: {fileID: 1681583711}
+  _moveSpeed: 5
+  _maxHealth: 100
 --- !u!114 &1681583710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,7 +580,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72c302528cb8482f82def8fc9ecc435d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.HealthComponent
-  _maxHealth: 100
 --- !u!114 &1681583711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +597,15 @@ MonoBehaviour:
   _attackCapacityMax: 10
   _outerRadius: 3.5
   _innerRadius: 2
+  _waitRadius: 8
+  _slotCount: 8
+  _drawGizmos: 1
+  _innerCircleColor: {r: 0.9150943, g: 0, b: 0, a: 1}
+  _outerCircleColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  _waitCircleColor: {r: 1, g: 1, b: 1, a: 0.3}
+  _freeSlotColor: {r: 0, g: 1, b: 0, a: 1}
+  _occupiedSlotColor: {r: 1, g: 0, b: 0, a: 1}
+  _lockedSlotColor: {r: 1, g: 0, b: 1, a: 1}
 --- !u!1 &1702548472
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,7 +720,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 06f66bb7d0e822448a053b94afbd56be, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
