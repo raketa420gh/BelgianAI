@@ -1,12 +1,17 @@
-﻿namespace BelgianAI
+﻿using UnityEngine;
+
+namespace BelgianAI
 {
     public interface IStageManager
     {
-        public void Initialize();
+        float OuterRadius { get; }
+        float InnerRadius { get; }
+        Vector3 PlayerPosition { get; }
+
         bool RequestSlot(IAttacker attacker);
         void ReleaseSlot(IAttacker attacker);
         bool RequestAttack(IAttacker attacker, Attack attack);
         void ReleaseAttack(IAttacker attacker);
-        void UpdateAssignments();
+        Vector3 GetWaitPosition(IAttacker attacker);
     }
 }

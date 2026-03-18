@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace BelgianAI
 {
@@ -8,9 +9,18 @@ namespace BelgianAI
         public string Name => _name;
         public int AttackWeight => _weight;
         public float Duration => _duration;
+        public int Damage => _damage;
+        public float Cooldown => _cooldown;
 
-        private string _name;
-        private int _weight;
-        private float _duration;
+        [SerializeField] 
+        private string _name = "Attack";
+        [SerializeField] 
+        private int _weight = 3;
+        [SerializeField] 
+        private float _duration = 1.0f;
+        [SerializeField] 
+        private int _damage = 10;
+        [SerializeField] 
+        private float _cooldown = 2.0f;
     }
 }

@@ -7,11 +7,12 @@ namespace BelgianAI
     {
         int GridWeight { get; }
         IReadOnlyList<Attack> AvailableAttacks { get; }
-
         Attack CurrentAttack { get; }
+        Vector3 CurrentPosition { get; }
+        bool IsAlive { get; }
+
         void SetCurrentAttack(Attack attack);
         void OnSlotAssigned(GridSlot slot);
         void OnSlotReleased();
-        Vector3 CurrentPosition { get; }
     }
 }
