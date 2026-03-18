@@ -57,7 +57,8 @@ namespace BelgianAI
 
             foreach (var slot in _gridSlots)
             {
-                if (slot.IsOccupied) continue;
+                if (slot.IsOccupied) 
+                    continue;
 
                 float dist = Vector3.Distance(attacker.CurrentPosition, slot.WorldPosition);
                 if (dist < bestDistance)
