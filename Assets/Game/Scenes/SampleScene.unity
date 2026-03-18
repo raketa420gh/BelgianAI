@@ -527,6 +527,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1681583708}
   - component: {fileID: 1681583709}
+  - component: {fileID: 1681583710}
+  - component: {fileID: 1681583711}
   m_Layer: 0
   m_Name: '[Player]'
   m_TagString: Untagged
@@ -562,6 +564,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ce6e77b4244a79b1fa2759c126bdf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.Player
+  _healthComponent: {fileID: 1681583710}
+  _stageManager: {fileID: 1681583711}
+--- !u!114 &1681583710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681583707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72c302528cb8482f82def8fc9ecc435d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.HealthComponent
+  _maxHealth: 100
+--- !u!114 &1681583711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681583707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716b084e133941639230e604e0536ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.StageManager
+  _playerTransform: {fileID: 1915753200}
+  _gridCapacityMax: 10
+  _attackCapacityMax: 10
+  _outerRadius: 3.5
+  _innerRadius: 2
 --- !u!1 &1702548472
 GameObject:
   m_ObjectHideFlags: 0

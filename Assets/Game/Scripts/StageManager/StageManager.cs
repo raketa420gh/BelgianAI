@@ -3,32 +3,31 @@ using UnityEngine;
 
 namespace BelgianAI
 {
-    public class StageManager : IStageManager
+    public class StageManager : MonoBehaviour, IStageManager
     {
-        private readonly Transform _playerTransform;
-        private readonly int _gridCapacityMax;
-        private readonly int _attackCapacityMax;
+        [SerializeField]
+        private Transform _playerTransform;
+        [SerializeField]
+        private int _gridCapacityMax = 10;
+        [SerializeField]
+        private int _attackCapacityMax = 10;
+        [SerializeField]
+        private float _outerRadius = 3.5f;
+        [SerializeField]
+        private float _innerRadius = 2.0f;
 
         private int _currentGridCapacity;
         private int _currentAttackCapacity;
 
         private List<GridSlot> _gridSlots;
-        private Dictionary<IAttacker, GridSlot> _occupiedSlots = new();
-        private Dictionary<IAttacker, Attack> _assignedAttacks = new();
+        private readonly Dictionary<IAttacker, GridSlot> _occupiedSlots = new();
+        private readonly Dictionary<IAttacker, Attack> _assignedAttacks = new();
 
-        private List<IAttacker> _waitingAttackers = new();
-
-        private readonly float _outerRadius = 3.5f;
-        private readonly float _innerRadius = 2.0f;
-
-        public StageManager(Transform playerTransform, int gridCapacityMax, int attackCapacityMax)
+        public void Initialize()
         {
-            _playerTransform = playerTransform;
-            _gridCapacityMax = gridCapacityMax;
-            _attackCapacityMax = attackCapacityMax;
-            _currentGridCapacity = gridCapacityMax;
-            _currentAttackCapacity = attackCapacityMax;
-
+            _currentGridCapacity = _gridCapacityMax;
+            _currentAttackCapacity = _attackCapacityMax;
+            
             InitializeGridSlots();
         }
 
