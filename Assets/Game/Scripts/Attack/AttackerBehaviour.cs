@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BelgianAI
 {
-    public class AttackBehaviour : MonoBehaviour, IAttacker
+    public class AttackerBehaviour : MonoBehaviour, IAttacker
     {
         public int GridWeight => _gridWeight;
         public IReadOnlyList<Attack> AvailableAttacks => _availableAttacks;
@@ -39,17 +39,13 @@ namespace BelgianAI
         private bool _isAlive = true;
 
         private Dictionary<Attack, float> _attackCooldowns = new();
-
-        private Color _originalColor;
+        
         private static readonly Color AttackingColor = Color.red;
         private static readonly Color ApproachingColor = Color.yellow;
         private static readonly Color WaitingColor = Color.gray;
 
-        private void Start()
+        public void Enable()
         {
-            if (_renderer != null)
-                _originalColor = _renderer.material.color;
-            
             foreach (var attack in _availableAttacks)
                 _attackCooldowns[attack] = 0f;
 
@@ -57,13 +53,13 @@ namespace BelgianAI
                 _stageManager.RegisterAttacker(this);
         }
 
-        private void OnDestroy()
+        public void Disable()
         {
             if (_stageManager != null)
                 _stageManager.UnregisterAttacker(this);
         }
 
-        private void Update()
+        public void Update()
         {
             if (!_isAlive)
                 return;

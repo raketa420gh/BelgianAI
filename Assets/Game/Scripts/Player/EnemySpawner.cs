@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace BelgianAI
 {
@@ -13,9 +14,9 @@ namespace BelgianAI
 
         [Header("Enemy Prefabs")]
         [SerializeField] 
-        private GameObject _soldierPrefab;
+        private AttackerBehaviour _soldierPrefab;
         [SerializeField] 
-        private GameObject _trollPrefab;
+        private AttackerBehaviour _trollPrefab;
 
         [Header("Spawn Settings")]
         [SerializeField] 
@@ -25,11 +26,19 @@ namespace BelgianAI
         [SerializeField] 
         private float _spawnRadius = 12f;
 
-        private readonly List<GameObject> _spawnedEnemies = new();
+        private readonly List<AttackerBehaviour> _spawnedEnemies = new();
 
         private void Start()
         {
             SpawnEnemies();
+        }
+
+        private void Update()
+        {
+            foreach (AttackerBehaviour attackerBehaviour in _spawnedEnemies)
+            {
+                attackerBehaviour.Update();
+            }
         }
 
         private void SpawnEnemies()
@@ -45,20 +54,16 @@ namespace BelgianAI
             }
         }
 
-        private void SpawnEnemy(GameObject prefab, string name)
+        private void SpawnEnemy(AttackerBehaviour attacker, string name)
         {
             Vector3 randomPos = _playerTransform.position +
                                 Random.insideUnitSphere.normalized * _spawnRadius;
             randomPos.y = _playerTransform.position.y;
 
-            GameObject enemy = Instantiate(prefab, randomPos, Quaternion.identity);
+            AttackerBehaviour enemy = Instantiate(attacker, randomPos, Quaternion.identity);
             enemy.name = name;
-            
-            var attackBehaviour = enemy.GetComponent<AttackBehaviour>();
-            if (attackBehaviour != null)
-            {
-                attackBehaviour.SetStageManager(_stageManager);
-            }
+            enemy.SetStageManager(_stageManager);
+            enemy.Enable();
 
             _spawnedEnemies.Add(enemy);
         }
