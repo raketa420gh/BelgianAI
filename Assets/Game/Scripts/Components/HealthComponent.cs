@@ -9,7 +9,8 @@ namespace BelgianAI
         public event Action OnHealthMax;
         
         public int CurrentHealth => _currentHealth;
-        
+        public float MaxHealth => _maxHealth;
+
         private int _maxHealth = 100;
         private int _currentHealth;
 

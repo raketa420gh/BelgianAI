@@ -663,6 +663,7 @@ GameObject:
   - component: {fileID: 1681583711}
   - component: {fileID: 1681583710}
   - component: {fileID: 1681583712}
+  - component: {fileID: 1681583714}
   m_Layer: 0
   m_Name: '[Player]'
   m_TagString: Untagged
@@ -767,6 +768,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.MoveComponent
   _moveSpeed: 5
   _rotationSpeed: 720
+--- !u!114 &1681583714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681583707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f85f0ea7744f569cacccda52362aee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.PlayerHealthUI
+  _health: {fileID: 1681583710}
 --- !u!1 &1702548472
 GameObject:
   m_ObjectHideFlags: 0
