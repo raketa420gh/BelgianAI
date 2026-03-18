@@ -5,14 +5,17 @@ namespace BelgianAI
     public class Player : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] 
+        [SerializeField]
         private HealthComponent _healthComponent;
-        [SerializeField] 
-        private MoveComponent _moveComponent;
-        [SerializeField] 
+
+        [SerializeField]
         private StageManager _stageManager;
-        [SerializeField] 
+
+        [SerializeField]
         private PlayerInputController _inputController;
+
+        [SerializeField]
+        private MoveComponent _moveComponent;
         
         [SerializeField]
         private int _maxHealth = 100;
@@ -23,16 +26,26 @@ namespace BelgianAI
             _stageManager.Initialize();
 
             _healthComponent.OnHealthEnd += HandleDeath;
+            _inputController.OnKillRequested += HandleKillRequested;
         }
 
         private void OnDestroy()
         {
             _healthComponent.OnHealthEnd -= HandleDeath;
+            _inputController.OnKillRequested -= HandleKillRequested;
         }
 
         private void Update()
         {
             _moveComponent.Move(_inputController.MoveDirection);
+        }
+
+        private void HandleKillRequested()
+        {
+            if (_stageManager.TryKillRandomAttacker())
+                Debug.Log("Enemy killed!");
+            else
+                Debug.Log("No enemies left to kill.");
         }
 
         private void HandleDeath()

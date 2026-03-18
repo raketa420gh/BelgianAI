@@ -68,6 +68,34 @@ namespace BelgianAI
             UpdateSlotPositions();
             ReassignSlots();
         }
+        
+        public bool TryKillRandomAttacker()
+        {
+            if (_registeredAttackers.Count == 0)
+                return false;
+            
+            List<IAttacker> aliveAttackers = new List<IAttacker>();
+            foreach (var attacker in _registeredAttackers)
+            {
+                if (attacker.IsAlive)
+                    aliveAttackers.Add(attacker);
+            }
+
+            if (aliveAttackers.Count == 0)
+                return false;
+
+            int randomIndex = Random.Range(0, aliveAttackers.Count);
+            var victim = aliveAttackers[randomIndex];
+            
+            ReleaseAttack(victim);
+            ReleaseSlot(victim);
+            _registeredAttackers.Remove(victim);
+            
+            if (victim is AttackerBehaviour attackerBehaviour)
+                attackerBehaviour.Kill();
+            
+            return true;
+        }
 
         private void OnDrawGizmos()
         {

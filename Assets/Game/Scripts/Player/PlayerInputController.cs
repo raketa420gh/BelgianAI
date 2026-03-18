@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace BelgianAI
 {
     public class PlayerInputController : MonoBehaviour
     {
+        public event Action OnKillRequested;
+
         public Vector3 MoveDirection => _moveDirection;
 
         private Vector3 _moveDirection;
@@ -12,6 +15,7 @@ namespace BelgianAI
         private void Update()
         {
             ReadInput();
+            ReadActions();
         }
 
         private void ReadInput()
@@ -36,6 +40,16 @@ namespace BelgianAI
                 horizontal -= 1f;
 
             _moveDirection = new Vector3(horizontal, 0f, vertical).normalized;
+        }
+
+        private void ReadActions()
+        {
+            var keyboard = Keyboard.current;
+            if (keyboard == null)
+                return;
+
+            if (keyboard.kKey.wasPressedThisFrame)
+                OnKillRequested?.Invoke();
         }
     }
 }

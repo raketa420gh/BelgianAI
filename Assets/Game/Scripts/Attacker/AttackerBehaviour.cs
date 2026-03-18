@@ -11,16 +11,13 @@ namespace BelgianAI
         public Attack CurrentAttack => _currentAttack;
         public Vector3 CurrentPosition => transform.position;
         public bool IsAlive => _isAlive;
-
-        [Header("Grid Settings")]
+        
         [SerializeField]
         private int _gridWeight = 4;
-
-        [Header("Attacks")]
+        
         [SerializeField]
         private List<Attack> _availableAttacks = new();
-
-        [Header("Movement")]
+        
         [SerializeField]
         private MoveComponent _moveComponent;
 
@@ -29,8 +26,7 @@ namespace BelgianAI
 
         [SerializeField]
         private float _attackApproachSpeed = 5f;
-
-        [Header("Visual")]
+        
         [SerializeField]
         private Renderer _renderer;
         
@@ -60,6 +56,8 @@ namespace BelgianAI
         {
             if (_stageManager != null)
                 _stageManager.UnregisterAttacker(this);
+            
+            gameObject.SetActive(false);
         }
 
         public void Update()
