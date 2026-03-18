@@ -22,6 +22,9 @@ namespace BelgianAI
 
         [Header("Movement")]
         [SerializeField]
+        private MoveComponent _moveComponent;
+
+        [SerializeField]
         private float _approachSpeed = 3f;
 
         [SerializeField]
@@ -38,8 +41,8 @@ namespace BelgianAI
         private bool _isAttacking;
         private bool _isAlive = true;
 
-        private Dictionary<Attack, float> _attackCooldowns = new();
-        
+        private readonly Dictionary<Attack, float> _attackCooldowns = new();
+
         private static readonly Color AttackingColor = Color.red;
         private static readonly Color ApproachingColor = Color.yellow;
         private static readonly Color WaitingColor = Color.gray;
@@ -78,14 +81,12 @@ namespace BelgianAI
             {
                 MoveToOuterSlot();
                 SetVisualState(ApproachingColor);
-                
+
                 if (_currentSlot != null)
                 {
                     float distToSlot = Vector3.Distance(transform.position, _currentSlot.WorldPosition);
                     if (distToSlot < 0.5f)
-                    {
                         TryRequestAttack();
-                    }
                 }
             }
             else
@@ -94,13 +95,7 @@ namespace BelgianAI
                 SetVisualState(AttackingColor);
             }
         }
-        
-        public void SetStageManager(StageManager stageManager)
-        {
-            _stageManager = stageManager;
-            _stageManager.RegisterAttacker(this);
-        }
-        
+
         public void OnSlotAssigned(GridSlot slot)
         {
             _currentSlot = slot;
@@ -116,6 +111,12 @@ namespace BelgianAI
         public void SetCurrentAttack(Attack attack)
         {
             _currentAttack = attack;
+        }
+
+        public void SetStageManager(StageManager stageManager)
+        {
+            _stageManager = stageManager;
+            _stageManager.RegisterAttacker(this);
         }
 
         public void Kill()
@@ -159,33 +160,37 @@ namespace BelgianAI
 
         private IEnumerator PerformAttackCoroutine()
         {
+            _moveComponent.SetSpeed(_attackApproachSpeed);
+
             float elapsed = 0f;
             float duration = _currentAttack.Duration;
-            
+
             while (elapsed < duration)
             {
                 elapsed += Time.deltaTime;
                 MoveToInnerCircle();
                 yield return null;
             }
-            
+
             DealDamage();
-            
+
             if (_currentAttack != null && _attackCooldowns.ContainsKey(_currentAttack))
                 _attackCooldowns[_currentAttack] = _currentAttack.Cooldown;
-            
+
             _isAttacking = false;
             _stageManager.ReleaseAttack(this);
             _stageManager.ReleaseSlot(this);
             _hasSlot = false;
             _currentSlot = null;
+
+            _moveComponent.SetSpeed(_approachSpeed);
         }
 
         private void DealDamage()
         {
             if (_currentAttack == null)
                 return;
-            
+
             float dist = Vector3.Distance(transform.position, _stageManager.PlayerPosition);
             if (dist <= _stageManager.InnerRadius + 0.5f)
             {
@@ -204,12 +209,8 @@ namespace BelgianAI
             if (_currentSlot == null)
                 return;
 
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                _currentSlot.WorldPosition,
-                _approachSpeed * Time.deltaTime);
-
-            LookAtPlayer();
+            _moveComponent.SetSpeed(_approachSpeed);
+            _moveComponent.MoveTowards(_currentSlot.WorldPosition);
         }
 
         private void MoveToInnerCircle()
@@ -217,31 +218,16 @@ namespace BelgianAI
             Vector3 dirToPlayer = (_stageManager.PlayerPosition - transform.position).normalized;
             Vector3 innerPos = _stageManager.PlayerPosition - dirToPlayer * _stageManager.InnerRadius;
 
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                innerPos,
-                _attackApproachSpeed * Time.deltaTime);
-
-            LookAtPlayer();
+            _moveComponent.SetSpeed(_attackApproachSpeed);
+            _moveComponent.MoveTowards(innerPos);
         }
 
         private void MoveToWaitPosition()
         {
             Vector3 waitPos = _stageManager.GetWaitPosition(this);
-            transform.position = Vector3.MoveTowards(
-                transform.position,
-                waitPos,
-                _approachSpeed * Time.deltaTime);
 
-            LookAtPlayer();
-        }
-
-        private void LookAtPlayer()
-        {
-            Vector3 lookDir = _stageManager.PlayerPosition - transform.position;
-            lookDir.y = 0;
-            if (lookDir.sqrMagnitude > 0.001f)
-                transform.rotation = Quaternion.LookRotation(lookDir);
+            _moveComponent.SetSpeed(_approachSpeed);
+            _moveComponent.MoveTowards(waitPos);
         }
 
         private void SetVisualState(Color color)
@@ -249,7 +235,7 @@ namespace BelgianAI
             if (_renderer != null)
                 _renderer.material.color = color;
         }
-
+        
 #if UNITY_EDITOR
         private void OnDrawGizmosSelected()
         {

@@ -8,17 +8,16 @@ namespace BelgianAI
         [SerializeField] 
         private HealthComponent _healthComponent;
         [SerializeField] 
+        private MoveComponent _moveComponent;
+        [SerializeField] 
         private StageManager _stageManager;
-
-        [Header("Movement")]
         [SerializeField] 
-        private float _moveSpeed = 5f;
+        private PlayerInputController _inputController;
         
-        [Header("Health")]
-        [SerializeField] 
+        [SerializeField]
         private int _maxHealth = 100;
-        
-        private void OnEnable()
+
+        private void Start()
         {
             _healthComponent.Initialize(_maxHealth);
             _stageManager.Initialize();
@@ -26,28 +25,14 @@ namespace BelgianAI
             _healthComponent.OnHealthEnd += HandleDeath;
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _healthComponent.OnHealthEnd -= HandleDeath;
         }
 
         private void Update()
         {
-            HandleMovement();
-        }
-
-        private void HandleMovement()
-        {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
-
-            Vector3 direction = new Vector3(h, 0f, v).normalized;
-
-            if (direction.sqrMagnitude > 0.01f)
-            {
-                transform.position += direction * (_moveSpeed * Time.deltaTime);
-                transform.rotation = Quaternion.LookRotation(direction);
-            }
+            _moveComponent.Move(_inputController.MoveDirection);
         }
 
         private void HandleDeath()

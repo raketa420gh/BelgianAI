@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6987566458947964310}
   - component: {fileID: 6063413678115068280}
+  - component: {fileID: 6884633330956943059}
   m_Layer: 0
   m_Name: Soldier
   m_TagString: Untagged
@@ -57,9 +58,24 @@ MonoBehaviour:
     _duration: 1.2
     _damage: 10
     _cooldown: 4
+  _moveComponent: {fileID: 6884633330956943059}
   _approachSpeed: 3
   _attackApproachSpeed: 5
   _renderer: {fileID: 8426130110050156326}
+--- !u!114 &6884633330956943059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2308175154256892336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9c063ad18b416398e375677b8d5e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.MoveComponent
+  _moveSpeed: 3
+  _rotationSpeed: 360
 --- !u!1 &5512629349895177364
 GameObject:
   m_ObjectHideFlags: 0

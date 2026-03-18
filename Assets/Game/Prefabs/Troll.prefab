@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2360654305902896319}
   - component: {fileID: 7926804230827004840}
+  - component: {fileID: 3576936225247801481}
   m_Layer: 0
   m_Name: Troll
   m_TagString: Untagged
@@ -57,9 +58,24 @@ MonoBehaviour:
     _duration: 1
     _damage: 12
     _cooldown: 3
+  _moveComponent: {fileID: 3576936225247801481}
   _approachSpeed: 2
   _attackApproachSpeed: 4
   _renderer: {fileID: 8404871206282970249}
+--- !u!114 &3576936225247801481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756778317549522095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9c063ad18b416398e375677b8d5e1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BelgianAI.MoveComponent
+  _moveSpeed: 2
+  _rotationSpeed: 270
 --- !u!1 &1955357182268042872
 GameObject:
   m_ObjectHideFlags: 0
