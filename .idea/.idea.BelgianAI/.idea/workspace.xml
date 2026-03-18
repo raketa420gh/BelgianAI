@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="968d853c-5724-4f5a-abf0-387ca04dfe66" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Game/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scenes/SampleScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Game/Scripts/Attack/AttackBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Game/Scripts/Attack/AttackBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +35,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Game.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Game/Scenes/SampleScene.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://D:/Game Development/BelgianAI/Assets/Game/Scripts/Attack/AttackBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="mock://D:/Game Development/BelgianAI/Assets/Game/Scripts/Player/HealthComponent.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -127,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1773663022128</updated>
       <workItem from="1773663024596" duration="3293000" />
-      <workItem from="1773830556691" duration="3171000" />
+      <workItem from="1773830556691" duration="3516000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -201,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773833554785</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="prefabs added / fixes">
+      <option name="closed" value="true" />
+      <created>1773834080944</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1773834080944</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -237,7 +245,8 @@
     <MESSAGE value="Player update" />
     <MESSAGE value="code added" />
     <MESSAGE value="materials added" />
-    <option name="LAST_COMMIT_MESSAGE" value="materials added" />
+    <MESSAGE value="prefabs added / fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="prefabs added / fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

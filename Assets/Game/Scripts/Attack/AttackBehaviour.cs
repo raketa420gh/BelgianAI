@@ -47,9 +47,6 @@ namespace BelgianAI
 
         private void Start()
         {
-            if (_renderer == null)
-                _renderer = GetComponent<Renderer>();
-
             if (_renderer != null)
                 _originalColor = _renderer.material.color;
             
